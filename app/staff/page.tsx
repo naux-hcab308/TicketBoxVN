@@ -11,7 +11,7 @@ interface Event {
   start_time: string
   end_time: string
   status: string
-  venues: { venue_name: string; city: string } | null
+  venues: { venue_name: string; city: string }[] | null
 }
 
 export default function StaffEventsPage() {
@@ -68,10 +68,10 @@ export default function StaffEventsPage() {
                       )}
                     </div>
                     <h3 className="font-semibold truncate">{event.event_name}</h3>
-                    {event.venues && (
+                    {event.venues?.[0] && (
                       <p className="text-sm text-muted-foreground flex items-center gap-1 mt-1">
                         <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
-                        {event.venues.venue_name}, {event.venues.city}
+                        {event.venues[0].venue_name}, {event.venues[0].city}
                       </p>
                     )}
                     <p className="text-sm text-muted-foreground flex items-center gap-1 mt-0.5">

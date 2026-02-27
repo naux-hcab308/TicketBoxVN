@@ -152,7 +152,7 @@ export default function StaffPage() {
                     </td>
                     <td className="px-4 py-3 text-muted-foreground">{s.staff_number || '—'}</td>
                     <td className="px-4 py-3">
-                      {editingShift?.id === s.staff_id ? (
+                      {editingShift && editingShift.id === s.staff_id ? (
                         <div className="flex items-center gap-1">
                           <select
                             value={editingShift.value}

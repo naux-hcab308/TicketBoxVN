@@ -22,7 +22,7 @@ interface TicketData {
     event_name: string
     start_time: string
     end_time: string | null
-    venues: { venue_name: string; city: string } | null
+    venues: { venue_name: string; city: string }[] | null
   } | null
 }
 
@@ -104,10 +104,10 @@ export default function MyTicketsPage() {
                             })}
                           </span>
                         )}
-                        {ev?.venues && (
+                        {ev?.venues?.[0] && (
                           <span className="flex items-center gap-1">
                             <MapPin className="w-3 h-3" />
-                            {ev.venues.venue_name}
+                            {ev.venues[0].venue_name}
                           </span>
                         )}
                       </div>

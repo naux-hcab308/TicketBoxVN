@@ -18,7 +18,7 @@ interface Stats {
     result: string
     checkin_time: string
     note: string | null
-    tickets: { code: string } | null
+    tickets: { code: string }[] | null
   }>
 }
 
@@ -28,7 +28,7 @@ interface Event {
   start_time: string
   end_time: string
   status: string
-  venues: { venue_name: string; city: string } | null
+  venues: { venue_name: string; city: string }[] | null
 }
 
 export default function StaffStatsPage() {
@@ -182,7 +182,7 @@ export default function StaffStatsPage() {
                     )}
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-mono font-medium truncate">
-                        {log.tickets?.code ?? 'Unknown'}
+                        {log.tickets?.[0]?.code ?? 'Unknown'}
                       </p>
                       {log.note && (
                         <p className="text-xs text-muted-foreground truncate">{log.note}</p>

@@ -18,7 +18,7 @@ interface Event {
   start_time: string
   end_time: string | null
   status: string
-  venues: { venue_name: string; city: string } | null
+  venues: { venue_name: string; city: string }[] | null
 }
 
 export default function EventGrid({ category, searchQuery }: EventGridProps) {

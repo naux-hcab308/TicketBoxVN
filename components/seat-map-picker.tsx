@@ -60,10 +60,11 @@ export default function SeatMapPicker({
     setError(null)
 
     const result = await addSeatsToCart(ticketTypeId, Array.from(selected), eventId)
-    if (result.error) {
+    if ('error' in result) {
       setError(result.error)
       setSubmitting(false)
     } else {
+      setSubmitting(false)
       onSuccess()
     }
   }

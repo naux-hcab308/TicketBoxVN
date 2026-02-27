@@ -13,7 +13,7 @@ interface EventCardProps {
     start_time: string
     end_time: string | null
     status: string
-    venues: { venue_name: string; city: string } | null
+    venues: { venue_name: string; city: string }[] | null
   }
 }
 
@@ -65,10 +65,10 @@ export default function EventCard({ event }: EventCardProps) {
                 })}
               </span>
             </div>
-            {event.venues && (
+            {event.venues?.[0] && (
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 flex-shrink-0" />
-                <span className="truncate">{event.venues.venue_name}, {event.venues.city}</span>
+                <span className="truncate">{event.venues[0].venue_name}, {event.venues[0].city}</span>
               </div>
             )}
           </div>
