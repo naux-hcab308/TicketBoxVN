@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { MapPin, Calendar } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
+type CategoryShape = { slug: string; name: string; name_vi: string | null }
+
 interface EventCardProps {
   event: {
     event_id: string
@@ -14,12 +16,17 @@ interface EventCardProps {
     end_time: string | null
     status: string
     venues: { venue_name: string; city: string }[] | { venue_name: string; city: string } | null
-    event_categories?: { slug: string; name: string; name_vi: string | null } | null
+    event_categories?: CategoryShape | CategoryShape[] | null
   }
 }
 
 export default function EventCard({ event }: EventCardProps) {
   const venue = Array.isArray(event.venues) ? event.venues[0] : event.venues
+  const category = event.event_categories
+    ? Array.isArray(event.event_categories)
+      ? event.event_categories[0]
+      : event.event_categories
+    : null
   const isOngoing =
     new Date(event.start_time) <= new Date() &&
     event.end_time &&
@@ -41,9 +48,9 @@ export default function EventCard({ event }: EventCardProps) {
             </div>
           )}
           <div className="absolute top-3 left-3 flex flex-wrap gap-2">
-            {event.event_categories && (
+            {category && (
               <span className="text-xs bg-primary/90 text-primary-foreground px-2.5 py-1 rounded-full font-medium">
-                {event.event_categories.name_vi || event.event_categories.name}
+                {category.name_vi || category.name}
               </span>
             )}
             {isOngoing && (
